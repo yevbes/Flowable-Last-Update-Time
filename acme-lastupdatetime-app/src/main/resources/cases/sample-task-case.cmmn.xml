@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions
+        xmlns="http://www.omg.org/spec/CMMN/20151109/MODEL"
+        xmlns:flowable="http://flowable.org/cmmn"
+        targetNamespace="Example">
+
+    <case id="sampleTaskCase" name="The Sample Task Case">
+        <casePlanModel id="casePlanModel" flowable:formFieldValidation="true">
+            <planItem id="stagePlanItem" definitionRef="sampleStage"/>
+            <stage id="sampleStage" name="Sample Stage">
+                <planItem id="taskPlanItem" definitionRef="sampleCaseTask"/>
+                <humanTask id="sampleCaseTask" name="Sample Case Task" flowable:assignee="admin" flowable:formKey="sampleTaskForm"/>
+            </stage>
+        </casePlanModel>
+    </case>
+
+</definitions>
