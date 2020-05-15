@@ -1,4 +1,15 @@
 # Acme Last update time Flowable Core
+## Database changes
+PostgresSQL engine used in this example.
+This project is required a table
+
+```sql
+CREATE TABLE act_hi_proc_update (
+    id_ serial primary key,
+    proc_id_ varchar(64) not null,
+    last_update_time_ TIMESTAMP not null
+);
+```
 
 ## Setting up the needed Infrastructure
 Please check the following links on how to setup the infrastructure for Flowable Core manually without
