@@ -2,6 +2,8 @@ package com.acme.lastupdatetime.listeners;
 
 import org.flowable.common.engine.api.delegate.event.*;
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -10,6 +12,7 @@ import java.sql.*;
  * @author Ievgenii Bespal
  */
 public class LastUpdateTimeEventListener implements FlowableEventListener {
+    private final static Logger log = LoggerFactory.getLogger(LastUpdateTimeEventListener.class);
     protected final DataSource dataSource;
 
     protected final String SQL_INSERT_DATA = "" +
@@ -23,11 +26,17 @@ public class LastUpdateTimeEventListener implements FlowableEventListener {
 
     @Override
     public void onEvent(FlowableEvent event) {
+        log.info("Event type: {} received.",event.getType().name());
+
         String processInstanceId = null;
         FlowableEngineEvent flowableEngineEvent = (FlowableEngineEvent) event;
         FlowableEngineEventType eventType = (FlowableEngineEventType) event.getType();
 
         switch (eventType) {
+            // TIMER
+            case TIMER_FIRED:
+            case TIMER_SCHEDULED:
+
             // ACTIVITY
             case ACTIVITY_STARTED:
             case ACTIVITY_COMPLETED:

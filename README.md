@@ -11,6 +11,9 @@ CREATE TABLE act_hi_proc_update (
 );
 ```
 
+## Event types captured
+Timer, Activity, Process, Task, Variables, Entity
+
 ## Setting up the needed Infrastructure
 Please check the following links on how to setup the infrastructure for Flowable Core manually without
 using Docker:
