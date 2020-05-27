@@ -1,6 +1,6 @@
 # Acme Last update time Flowable Core
 ## Abstract
-In the Flowable there is a way to consult information about updating processes and tasks. But this information is updated in certain cases and is not propagated at the process level. For that reason a listener has been created to capture the desired events and also record the time at which the event has been captured. 
+In the Flowable there is a way to get information about updating processes and tasks. But this information is updated in certain cases and is not propagated at the process level. For that reason a listener has been created to capture the desired events and also record the time at which the event has been captured. 
 
 All relevant information is stored in the database table `flw_hi_last_update_time'.
 
