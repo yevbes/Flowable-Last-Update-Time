@@ -50,6 +50,7 @@ Events that used in the listener.
 | `ENTITY_SUSPENDED` | YES | Entity event - Existing entity has been suspended. |
 | `TIMER_FIRED` | YES | Timer event - Timer has been fired successfully. |
 | `TIMER_SCHEDULED` | YES | Timer event - A Timer has been scheduled. |
+
 [More of events not included in the table.](https://flowable.com/open-source/docs/bpmn/ch03-Configuration/#supported-event-types)
 
 ## Setting up the needed Infrastructure
