@@ -17,12 +17,14 @@ CREATE TABLE flw_hi_last_update_time (
 ## Diagram
 This diagram represent different events captured by listener in different processes. Once event is captured listener automatically stores the date in the `flw_hi_last_update_time` table.
 
+Note that in the database table, **only the insert operation is performed**.
+
 ![Diagram](/acme-lastupdatetime-app/src/main/resources/diagram/diagram.svg)
 
 ## Event types captured
 Timer, Activity, Process, Task, Variables, Entity
 
-## Event analysis.
+## Event analysis
 Events that used in the listener.
 
 | Event | Relevant | Notes |
