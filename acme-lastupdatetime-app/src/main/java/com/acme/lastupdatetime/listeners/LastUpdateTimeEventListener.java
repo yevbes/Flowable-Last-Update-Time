@@ -16,7 +16,7 @@ public class LastUpdateTimeEventListener implements FlowableEventListener {
     protected final DataSource dataSource;
 
     protected final String SQL_INSERT_DATA = "" +
-            "INSERT INTO ACT_HI_PROC_UPDATE (PROC_ID_, LAST_UPDATE_TIME_) " +
+            "INSERT INTO FLW_HI_LAST_UPDATE_TIME (PROC_ID_, LAST_UPDATE_TIME_) " +
             "VALUES (?,?);" +
             "";
 

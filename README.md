@@ -1,18 +1,55 @@
 # Acme Last update time Flowable Core
+## Abstract
+
+
 ## Database changes
 PostgresSQL engine used in this example.
 This project is required a table
 
 ```sql
-CREATE TABLE act_hi_proc_update (
+CREATE TABLE flw_hi_last_update_time (
     id_ serial primary key,
     proc_id_ varchar(64) not null,
     last_update_time_ TIMESTAMP not null
 );
 ```
 
+## Diagram
+This diagram represent different events captured by listener in different processes. Once event is captured listener automatically stores the date in the `flw_hi_last_update_time` table.
+![Diagram](/acme-lastupdatetime-app/src/main/resources/diagram/diagram.svg)
+
 ## Event types captured
 Timer, Activity, Process, Task, Variables, Entity
+
+## Event analysis.
+Events that used in the listener.
+
+| Event | Relevant | Notes |
+|---|---|---|
+| `PROCESS_CANCELLED` | YES | Process event - A process has been cancelled. |
+| `PROCESS_COMPLETED` | YES | Process event - A process has been completed. |
+| `ACTIVITY_STARTED` | YES | Activity event - An activity is starting to execute. |
+| `ACTIVITY_COMPLETED` | YES | Activity event - An activity has been completed successfully. |
+| `ACTIVITY_CANCELLED` | YES | Activity event - An activity has been cancelled because of boundary event. |
+| `TASK_ASSIGNED` | YES | Task event - A task has been assigned. |
+| `TASK_CREATED` | YES | Task event - A task has been created. | 
+| `TASK_COMPLETED` | YES | Task event - A task has been completed. |
+| `TASK_OWNER_CHANGED` | YES | Task event - A task owner has been changed. |
+| `TASK_DUEDATE_CHANGED` | YES | Task event - A task dueDate has been changed. |
+| `TASK_PRIORITY_CHANGED` | YES | Task event - A task priority has been changed. |
+| `TASK_NAME_CHANGED` | YES | Task event - A task name has been changed. |
+| `VARIABLE_CREATED` | YES | Variable event - A new variable has been created. |
+| `VARIABLE_UPDATED` | YES | Variable event - An existing variable has been updated. |
+| `VARIABLE_DELETED` | YES | Variable event - An existing variable has been deleted. |
+| `ENTITY_CREATED` | YES | Entity event - New entity is created. |
+| `ENTITY_INITIALIZED` | YES | Entity event - New entity has been created and all child-entities that are created as a result of the creation of this particular entity are also created and initialized. |
+| `ENTITY_UPDATED` | YES | Entity event - Existing entity is updated. |
+| `ENTITY_DELETED` | YES | Entity event - Existing entity is deleted. |
+| `ENTITY_ACTIVATED` | YES | Entity event - Existing entity has been activated. |
+| `ENTITY_SUSPENDED` | YES | Entity event - Existing entity has been suspended. |
+| `TIMER_FIRED` | YES | Timer event - Timer has been fired successfully. |
+| `TIMER_SCHEDULED` | YES | Timer event - A Timer has been scheduled. |
+[More of events not included in the table.](https://flowable.com/open-source/docs/bpmn/ch03-Configuration/#supported-event-types)
 
 ## Setting up the needed Infrastructure
 Please check the following links on how to setup the infrastructure for Flowable Core manually without
