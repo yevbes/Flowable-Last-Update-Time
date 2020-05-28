@@ -24,7 +24,7 @@ Note that in the database table, **only the insert operation is performed**.
 ![Diagram](/acme-lastupdatetime-app/src/main/resources/diagram/diagram.svg)
 
 ## Housekeeping
-In this project it's not implemented but it necessary to delete old events.
+In this project it's not implemented but it necessary to delete old events from database table.
 
 ## Buffering
 With many inserts at the same time the performance can drop significantly. For that reason it is proposed to keep events in memory using the LIFO stack approach. If after a certain time no events is detected, the last event entered is registered and the stack is cleaned.
