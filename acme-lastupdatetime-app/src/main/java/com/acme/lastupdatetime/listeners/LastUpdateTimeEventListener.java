@@ -33,18 +33,28 @@ public class LastUpdateTimeEventListener implements FlowableEventListener {
         FlowableEngineEventType eventType = (FlowableEngineEventType) event.getType();
 
         switch (eventType) {
-            // TIMER
-            case TIMER_FIRED:
-            case TIMER_SCHEDULED:
-
             // ACTIVITY
             case ACTIVITY_STARTED:
             case ACTIVITY_COMPLETED:
             case ACTIVITY_CANCELLED:
+            case ACTIVITY_SIGNALED:
+            case ACTIVITY_MESSAGE_RECEIVED:
+            case ACTIVITY_MESSAGE_WAITING:
+            case ACTIVITY_MESSAGE_CANCELLED:
+            case ACTIVITY_ERROR_RECEIVED:
+            case ACTIVITY_COMPENSATE:
+
+            // MULTI INSTANCE ACTIVITY
+            case MULTI_INSTANCE_ACTIVITY_STARTED:
+            case MULTI_INSTANCE_ACTIVITY_COMPLETED:
+            case MULTI_INSTANCE_ACTIVITY_CANCELLED:
 
             // PROCESS
+            case PROCESS_CREATED:
             case PROCESS_CANCELLED:
+            case PROCESS_STARTED:
             case PROCESS_COMPLETED:
+            case PROCESS_COMPLETED_WITH_TERMINATE_END_EVENT:
 
             // TASK
             case TASK_ASSIGNED:

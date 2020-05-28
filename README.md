@@ -23,6 +23,12 @@ Note that in the database table, **only the insert operation is performed**.
 
 ![Diagram](/acme-lastupdatetime-app/src/main/resources/diagram/diagram.svg)
 
+## Housekeeping
+In this project it's not implemented but it necessary to delete old events.
+
+## Buffering
+With many inserts at the same time the performance can drop significantly. For that reason it is proposed to keep events in memory using the LIFO stack approach. If after a certain time no events is detected, the last event entered is registered and the stack is cleaned.
+
 ## Event types captured
 Timer, Activity, Process, Task, Variables, Entity
 
@@ -31,29 +37,51 @@ Events that used in the listener.
 
 | Event | Relevant | Notes |
 |---|---|---|
-| `PROCESS_CANCELLED` | YES | Process event - A process has been cancelled. |
-| `PROCESS_COMPLETED` | YES | Process event - A process has been completed. |
-| `ACTIVITY_STARTED` | YES | Activity event - An activity is starting to execute. |
-| `ACTIVITY_COMPLETED` | YES | Activity event - An activity has been completed successfully. |
-| `ACTIVITY_CANCELLED` | YES | Activity event - An activity has been cancelled because of boundary event. |
-| `TASK_ASSIGNED` | YES | Task event - A task has been assigned. |
-| `TASK_CREATED` | YES | Task event - A task has been created. | 
-| `TASK_COMPLETED` | YES | Task event - A task has been completed. |
-| `TASK_OWNER_CHANGED` | YES | Task event - A task owner has been changed. |
-| `TASK_DUEDATE_CHANGED` | YES | Task event - A task dueDate has been changed. |
-| `TASK_PRIORITY_CHANGED` | YES | Task event - A task priority has been changed. |
-| `TASK_NAME_CHANGED` | YES | Task event - A task name has been changed. |
-| `VARIABLE_CREATED` | YES | Variable event - A new variable has been created. |
-| `VARIABLE_UPDATED` | YES | Variable event - An existing variable has been updated. |
-| `VARIABLE_DELETED` | YES | Variable event - An existing variable has been deleted. |
-| `ENTITY_CREATED` | YES | Entity event - New entity is created. |
-| `ENTITY_INITIALIZED` | YES | Entity event - New entity has been created and all child-entities that are created as a result of the creation of this particular entity are also created and initialized. |
-| `ENTITY_UPDATED` | YES | Entity event - Existing entity is updated. |
-| `ENTITY_DELETED` | YES | Entity event - Existing entity is deleted. |
-| `ENTITY_ACTIVATED` | YES | Entity event - Existing entity has been activated. |
-| `ENTITY_SUSPENDED` | YES | Entity event - Existing entity has been suspended. |
-| `TIMER_FIRED` | YES | Timer event - Timer has been fired successfully. |
-| `TIMER_SCHEDULED` | YES | Timer event - A Timer has been scheduled. |
+| `ENGINE_CREATED` | NO | Event is captured at the engine level. |
+| `ENGINE_CLOSED` | NO | Event is captured at the engine level. |
+| `PROCESS_CREATED` | YES |  |
+| `PROCESS_STARTED` | YES |  |
+| `PROCESS_COMPLETED` | YES |  |
+| `PROCESS_COMPLETED_WITH_TERMINATE_END_EVENT` | YES |  |
+| `PROCESS_CANCELLED` | YES |  |
+| `MEMBERSHIP_CREATED` | NO |  |
+| `MEMBERSHIP_DELETED` | NO |  |
+| `MEMBERSHIPS_DELETED` | NO |  |
+| `ACTIVITY_STARTED` | YES |  |
+| `ACTIVITY_COMPLETED` | YES |  |
+| `ACTIVITY_CANCELLED` | YES |  |
+| `ACTIVITY_SIGNALED` | YES |  |
+| `ACTIVITY_MESSAGE_RECEIVED` | YES |  |
+| `ACTIVITY_MESSAGE_WAITING` | YES |  |
+| `ACTIVITY_MESSAGE_CANCELLED` | YES |  |
+| `ACTIVITY_ERROR_RECEIVED` | YES |  |
+| `ACTIVITY_COMPENSATE` | YES |  |
+| `UNCAUGHT_BPMN_ERROR` | NO |  |
+| `MULTI_INSTANCE_ACTIVITY_STARTED` | YES |  |
+| `MULTI_INSTANCE_ACTIVITY_COMPLETED` | YES |  |
+| `MULTI_INSTANCE_ACTIVITY_CANCELLED` | YES |  |
+| `TASK_ASSIGNED` | YES |  |
+| `TASK_CREATED` | YES |  |
+| `TASK_COMPLETED` | YES |  |
+| `TASK_OWNER_CHANGED` | YES |  |
+| `TASK_PRIORITY_CHANGED` | YES |  |
+| `TASK_DUEDATE_CHANGED` | YES |  |
+| `TASK_NAME_CHANGED` | YES |  |
+| `VARIABLE_CREATED` | YES |  |
+| `VARIABLE_UPDATED` | YES |  |
+| `VARIABLE_DELETED` | YES |  |
+| `ENTITY_CREATED` | YES |  |
+| `ENTITY_INITIALIZED` | YES |  |
+| `ENTITY_UPDATED` | YES |  |
+| `ENTITY_DELETED` | YES |  |
+| `ENTITY_SUSPENDED` | YES |  |
+| `ENTITY_ACTIVATED` | YES |  |
+| `JOB_EXECUTION_SUCCESS` | NO |  Event is captured at the engine level. It will affect other events. |
+| `JOB_EXECUTION_FAILURE` | NO | Event is captured at the engine level. It will affect other events. |
+| `JOB_RETRIES_DECREMENTED` | NO | Event is captured at the engine level. It will affect other events. |
+| `JOB_CANCELED` | NO | Event is captured at the engine level. It will affect other events. |
+| `TIMER_FIRED` | NO |  |
+| `TIMER_SCHEDULED` | NO |  |
 
 [More of events not included in the table.](https://flowable.com/open-source/docs/bpmn/ch03-Configuration/#supported-event-types)
 
