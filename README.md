@@ -30,7 +30,7 @@ In this project it's not implemented but it necessary to delete old events from 
 With many inserts at the same time the performance can drop significantly. For that reason it is proposed to keep events in memory using the LIFO stack approach. If after a certain time no events is detected, the last event entered is registered and the stack is cleaned.
 
 ## Event types captured
-Timer, Activity, Process, Task, Variables, Entity
+Multi instance activity, Activity, Process, Task, Variables, Entity
 
 ## Event analysis
 Events that used in the listener.
@@ -83,7 +83,7 @@ Events that used in the listener.
 | `TIMER_FIRED` | NO |  |
 | `TIMER_SCHEDULED` | NO |  |
 
-[More of events not included in the table.](https://flowable.com/open-source/docs/bpmn/ch03-Configuration/#supported-event-types)
+[All events included in the table.](https://flowable.com/open-source/docs/bpmn/ch03-Configuration/#supported-event-types)
 
 ## Setting up the needed Infrastructure
 Please check the following links on how to setup the infrastructure for Flowable Core manually without
